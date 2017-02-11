@@ -30,15 +30,17 @@ IRC.send(bytes("PRIVMSG #%s :Hello Master _o_\r\n" % CHAN, "UTF-8"))
 print(IRC.recv(4096).decode("UTF-8"), "\n")
 
 while True :
+    if 'PING :' in buff :
+        IRC.send(bytes("PRIVMSG #%s :I'M BACK BABY !!\r\n" % CHAN, "UTF-8"))
+        IRC.send(bytes("PONG :cenedra.langochat.net\r\n", "UTF-8"))
+        i -= 1
     if i == 5:
         IRC.send(bytes("PRIVMSG #%s :Trop de message BORDEL\r\n" % CHAN, "UTF-8"))
         i = 0
     buff = IRC.recv(1024).decode("UTF-8")
     if 'oh mon dieu' in buff.lower() :
         IRC.send(bytes("PRIVMSG #%s :Oui?\r\n" % CHAN, "UTF-8"))
-    if 'PING :' in buff :
-        IRC.send(bytes("PRIVMSG #%s :I'M BACK BABY !!\r\n" % CHAN, "UTF-8"))
-        IRC.send(bytes("PONG :cenedra.langochat.net\r\n", "UTF-8"))
+        i -= 1
     i += 1
     bufs = buff.split("{} :".format(CHAN))
     print("i = {}: {}".format(i, bufs ))
