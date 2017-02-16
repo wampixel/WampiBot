@@ -11,9 +11,9 @@ HOST = "irc.langochat.net"
 CHAN = "middleEarth"
 PORT = 6667
 
-NICK = "wampixelBot"
-IDENT = "wampixelBot"
-REALNAME = "wampixelBot"
+NICK = "wampiBot"
+IDENT = "wampiBot"
+REALNAME = "wampiBot"
 MASTER = "Wampixel"
 
 buff = ""
@@ -42,5 +42,14 @@ while True :
         IRC.send(bytes("PRIVMSG #%s :Oui?\r\n" % CHAN, "UTF-8"))
         i -= 1
     i += 1
+    if 'je t\'aime' in buff.lower() :
+        IRC.send(bytes("PRIVMSG #%s :je sais je suis indispensable pour beaucoup de personnes <3\r\n" % CHAN, "UTF-8"))
+        i -= 1
+    if 'comment tu t\'appelle ?' in buff.lower() :
+        IRC.send(bytes("PRIVMSG #%s :espece de trou du cul je suis wampiBot !\r\n" % CHAN, "UTF-8"))
+        i -= 1
+    if 'who is your creator ?' in buff.lower() :
+        IRC.send(bytes("PRIVMSG #%s :the magnificent and the only god for me : Wampixel !\r\n" % CHAN, "UTF-8"))
+        i -= 1
     bufs = buff.split("{} :".format(CHAN))
     print("i = {}: {}".format(i, bufs ))
